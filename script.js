@@ -7,7 +7,7 @@ const choices = ["ROCK", "PAPER", "SCISSORS"];
 
 //computer play function
 function computerPlay() {
-  let randNum = Math.floor(Math.random(choices.lenght + 1));
+  let randNum = Math.floor(Math.random() * (choices.lenght + 1));
   let computerMove = choices[randNum];
   return computerMove;
 }
@@ -24,7 +24,6 @@ function playRound(userSelection, computerSelection) {
           `It's a TIE!You played :${userSelection} and computer: ${computerSelection}`
         );
         roundWinner = "tie";
-        return roundWinner;
       }
       break;
     case 2:
@@ -34,13 +33,11 @@ function playRound(userSelection, computerSelection) {
           `You Won! You played:${userSelection} and computer:${computerSelection}`
         );
         roundWinner = "user";
-        return winner;
       } else if (userSelection == "ROCK" && computerSelection == "PAPER") {
         console.log(
           `You Lose! You played:${userSelection} and computer:${computerSelection}`
         );
         roundWinner = "computer";
-        return roundWinner;
       }
       break;
     case 3:
@@ -50,13 +47,11 @@ function playRound(userSelection, computerSelection) {
           `You Lose! You played:${userSelection} and computer:${computerSelection}`
         );
         roundWinner = "computer";
-        return roundWinner;
       } else if (userSelection == "SCISSORS" && computerSelection == "PAPER") {
         console.log(
           `You Win! You played:${userSelection} and computer:${computerSelection}`
         );
         roundWinner = "user";
-        return roundWinner;
       }
       break;
     case 4:
@@ -66,16 +61,15 @@ function playRound(userSelection, computerSelection) {
           `You Win! You played:${userSelection} and computer:${computerSelection}`
         );
         roundWinner = "user";
-        return roundWinner;
       } else if (userSelection == "PAPER" && computerSelection == "SCISSORS") {
         console.log(
           `You Lose! You played:${userSelection} and computer:${computerSelection}`
         );
         roundWinner = "computer";
-        return roundWinner;
       }
       break;
   }
+  return roundWinner;
 }
 
 //function playerSelectionTest
@@ -88,14 +82,16 @@ function Test(playerSelection) {
       if (playerSelection == choices[choice]) {
         return choices[playerSelection];
       } else if (playerSelection !== choices[choice]) {
-        console.log("you have to input some of the possible choices");
+        console.log(
+          "you have to input some of the possible choices,refresh the page"
+        );
         return;
       }
     });
   } else if (typeof playerSelection !== "string") {
-    console.log("you input has to contain only chars");
+    console.log("your input need to contain only chars,refresh the page");
   } else if ((playerSelection = "")) {
-    console.log("please input a value");
+    console.log("please input a value,refresh the page");
     return;
   }
 }
