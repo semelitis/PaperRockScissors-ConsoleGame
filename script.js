@@ -78,18 +78,18 @@ function Test(playerSelection) {
 
   if (playerSelection) {
     playerSelection.toUpperCase();
-    choices.forEach((choice) => {
-      if (playerSelection == choices[choice]) {
-        return choices[playerSelection];
-      } else if (playerSelection !== choices[choice]) {
-        console.log(
-          "you have to input some of the possible choices,refresh the page"
-        );
-        return;
-      }
-    });
-  } else if (typeof playerSelection !== "string") {
+
+    if (choices.includes(playerSelection)) {
+      return playerSelection;
+    } else {
+      console.log(
+        "you have to input some of the possible choices,refresh the page"
+      );
+      return;
+    }
+  } else if (typeof playerSelection !== String) {
     console.log("your input need to contain only chars,refresh the page");
+    return;
   } else if ((playerSelection = "")) {
     console.log("please input a value,refresh the page");
     return;
@@ -101,12 +101,16 @@ const game = function game() {
   let playerCount = 0;
   let computerCount = 0;
   let gameWinner = "";
+  let playerSelection = "";
+  let userSelection;
+  let computerSelection;
+  let roundWinnerOut;
 
   for (let i = 0; i < 5; i++) {
-    let playerSelection = promt("please select rock ,scissors or paper");
-    let userSelection = Test(playerSelection);
-    let computerSelection = computerPlay();
-    let roundWinnerOut = playRound(userSelection, computerSelection);
+    playerSelection = promt("please select rock ,scissors or paper");
+    userSelection = Test(playerSelection);
+    computerSelection = computerPlay();
+    roundWinnerOut = playRound(userSelection, computerSelection);
     switch (roundWinnerOut) {
       case 1:
         //winner=>User
